@@ -1,0 +1,17 @@
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.exe.config
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.exe
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.pdb
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.csprojAssemblyReference.cache
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\MainWindow.g.cs
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\App.g.cs
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote_MarkupCompile.cache
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote_MarkupCompile.lref
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\MainWindow.baml
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.g.resources
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.Properties.Resources.resources
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.GenerateResource.cache
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.exe
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.pdb
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\App.baml
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.CopyComplete
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\WpfPlus.dll
