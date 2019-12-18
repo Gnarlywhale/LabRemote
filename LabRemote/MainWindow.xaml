@@ -12,9 +12,9 @@
         <XmlDataProvider x:Key="TestList" XPath="/MockObjects/*">
             <x:XData>
                 <MockObjects xmlns="">
-                    <MockObject Name="Tom" LastName="Thomas" State="Canada" Phone="True" />
-                    <MockObject Name="Max" LastName="Mustermann" State="Germany" Phone="False" />
-                    <MockObject Name="Samantha" LastName="Johanson" State="Nowhere" Phone="True" />
+                    <MockObject Name="LabRemote" LastName="Thomas" State="Canada" Phone="True" />
+                    <MockObject Name="PupilLabs" LastName="Mustermann" State="Germany" Phone="False" />
+                    <MockObject Name="OptiTrack" LastName="Johanson" State="Nowhere" Phone="True" />
 
                 </MockObjects>
             </x:XData>
@@ -112,18 +112,37 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                 <GroupBox Header="Beep Control" Grid.Column="0" HorizontalAlignment="Left" Height="Auto" Width="Auto">
-                    <Grid>
-                            <CheckBox Grid.Row="0" Content="Beep" Foreground="White"></CheckBox>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Height="30">
-                            <TextBox  Margin="5,5,0,5" Width="50" Text="0" />
+                    <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Row="0" Content="Auto Play Beep" Foreground="White"></CheckBox>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                <Label Foreground="White" Content="Duration"/>
+                                <TextBox  Margin="5,5,0,5" Width="50" Text="0" />
                             <Button Margin="5,5,0,5" Content="+" Width="20" />
                             <Button  Margin="0,5,0,5"  Content="-" Width="20" />
-                        </StackPanel>
-                    </Grid>
-                </GroupBox>
 
-            </Grid>
+                        </StackPanel>
+                            <Button Grid.Row="2" Height="Auto" Content="Play Beep" Margin="5"/>
+                            
+                        </Grid>
+                </GroupBox>
+                    <Button Grid.Row="1" Grid.Column="0" Height="Auto" Content="Trigger Event" Margin="17,5,5,5" Width="175" HorizontalAlignment="Left"/>
+                    <plus:SpacedStackPanel Grid.Column="1" Grid.Row="0">
+                        <Label Content="Current Trial Length:" Foreground="White"/>
+                        <Label Content="00:00:00" FontSize="65"  HorizontalContentAlignment="Left" Foreground="White"/>
+                    </plus:SpacedStackPanel>
+                    <Button Grid.Row="1" Grid.Column="1" Height="Auto" Content="Record Trial" Margin="5" Width="175" HorizontalAlignment="Center"/>
+                </Grid>
             </Border>
         </plus:SpacedStackPanel>
 
