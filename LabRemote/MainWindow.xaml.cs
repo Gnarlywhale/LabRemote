@@ -19,22 +19,6 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
 
-class recorder { 
-    public static void startRecording()
-    {
-    //const string ex1 = "C:\\";
-    //const string ex2 = "C:\\Dir";
-    //https://stackoverflow.com/questions/9679375/run-an-exe-from-c-sharp-code
-        ProcessStartInfo startInfo = new ProcessStartInfo();
-        startInfo.CreateNoWindow = true;
-        startInfo.UseShellExecute = true;
-        startInfo.FileName = "LabRecorderCLI.exe";
-        startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        startInfo.Arguments = " testsituation.xdf \"name='Keyboard'\"";
-        Process exeProcess = Process.Start(startInfo);
-
-    }
-}
 
 class LSLStream
 {
@@ -59,12 +43,12 @@ namespace LabRemote
     {
 
         private static List<LSLStream> LSLstreams;
-        private static System.IO.StreamWriter recorderStream;
+        private static Process recorderProcess;
         private static SoundPlayer player;
         private static DispatcherTimer trialTimer;
         private static Boolean isRunning;
         private static DateTime trialStart;
-        private static Thread recorderThread;
+
         public MainWindow()
         {
 
@@ -149,8 +133,7 @@ namespace LabRemote
                 trialStart = DateTime.Now;
                 RecordBtn.Content = "Stop Trial";
                 isRunning = true;
-                //recorderThread = new Thread(recorder.startRecording);
-                //recorderThread.Start();
+
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.CreateNoWindow = true;
                 startInfo.UseShellExecute = false;
@@ -158,17 +141,13 @@ namespace LabRemote
                 startInfo.FileName = "LabRecorderCLI.exe";
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.Arguments = " testsituation.xdf \"name='Keyboard'\"";
-                Process recorderProcess = Process.Start(startInfo);
-                recorderStream = recorderProcess.StandardInput;
+                recorderProcess = Process.Start(startInfo);
+               
 
             } else
             {
-                //recorderThread.Abort();
-                //Process[] proc =  Process.GetProcessesByName("LabRecorderCLI");
-                //proc[0].Kill();
-
-                recorderStream.WriteLine("\n");
-                recorderStream.Flush();
+                recorderProcess.StandardInput.Write("\n");
+                recorderProcess.StandardInput.Flush();
                 RecordBtn.Content = "Start Trial";
                 trialTimer.Stop();
                 isRunning = false;
