@@ -9,6 +9,5 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("liblsl64.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("properties/beep.wav")]
 
 

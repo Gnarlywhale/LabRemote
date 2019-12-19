@@ -110,7 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="liblsl64.dll" />
-    <Content Include="Properties\beep.wav" />
+    <None Include="Resources\coin.wav" />
+    <None Include="Resources\beep2.wav" />
+    <None Include="Resources\beep.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.0.0\build\MaterialDesignThemes.targets')" />

@@ -45,7 +45,7 @@ namespace LabRemote
             InitializeComponent();
             loadStreams(this, null);
             player = new SoundPlayer();
-            player.Stream = Properties.Resources.beep;
+            player.Stream = Properties.Resources.coin;
         }
         private void loadStreams(object sender, RoutedEventArgs e)
         {

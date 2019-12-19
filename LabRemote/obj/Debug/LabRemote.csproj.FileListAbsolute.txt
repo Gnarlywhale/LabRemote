@@ -37,3 +37,8 @@ C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.Windo
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote_Content.g.cs
+C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
