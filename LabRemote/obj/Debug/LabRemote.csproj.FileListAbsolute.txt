@@ -1,7 +1,6 @@
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.exe.config
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.exe
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\LabRemote.pdb
-C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.csprojAssemblyReference.cache
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\MainWindow.g.cs
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\App.g.cs
 C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote_MarkupCompile.cache
@@ -32,3 +31,9 @@ C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.Gene
 C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.CopyComplete
 C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.exe
 C:\Users\ThomasRiley\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.pdb
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote.csprojAssemblyReference.cache
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\obj\Debug\LabRemote_Content.g.cs
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Deep Thought\source\repos\LabRemote\LabRemote\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

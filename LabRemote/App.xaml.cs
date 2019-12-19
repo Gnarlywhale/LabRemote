@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using LSL;
 namespace LabRemote
 {
     /// <summary>
@@ -13,6 +13,7 @@ namespace LabRemote
     /// </summary>
     public partial class App : Application
     {
-
+    
+       
     }
 }

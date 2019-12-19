@@ -7,7 +7,7 @@
          xmlns:plus="clr-namespace:WpfPlus.Controls;assembly=WpfPlus"
         Style="{DynamicResource FlatWindowStyle}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Lab Remote" Height="450" Width="800">
     <Window.Resources>
         <XmlDataProvider x:Key="TestList" XPath="/MockObjects/*">
             <x:XData>
@@ -31,20 +31,22 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <CheckBox Grid.Row="0" Content="Select All" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="15" Width="68"/>
-        <Button Grid.Row="0" Height="35" Width="35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">
-            <Path Width="15" Height="15" Stretch="Fill" Fill="#FFFFFF" Data="F1 M 38,20.5833C 42.9908,20.5833 47.4912,22.6825 50.6667,26.046L 50.6667,17.4167L 55.4166,22.1667L 55.4167,34.8333L 42.75,34.8333L 38,30.0833L 46.8512,30.0833C 44.6768,27.6539 41.517,26.125 38,26.125C 31.9785,26.125 27.0037,30.6068 26.2296,36.4167L 20.6543,36.4167C 21.4543,27.5397 28.9148,20.5833 38,20.5833 Z M 38,49.875C 44.0215,49.875 48.9963,45.3932 49.7703,39.5833L 55.3457,39.5833C 54.5457,48.4603 47.0852,55.4167 38,55.4167C 33.0092,55.4167 28.5088,53.3175 25.3333,49.954L 25.3333,58.5833L 20.5833,53.8333L 20.5833,41.1667L 33.25,41.1667L 38,45.9167L 29.1487,45.9167C 31.3231,48.3461 34.483,49.875 38,49.875 Z "/>
+        <!--<CheckBox Grid.Row="0" Content="Select All" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="15" Width="68"/>-->
+        <Button Grid.Row="0" Height="35" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" Click="refreshStreams">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Refresh Streams     " Foreground="White" VerticalAlignment="Center"/>
+                <Path Width="15" Height="15" Stretch="Fill" Fill="#FFFFFF" Data="F1 M 38,20.5833C 42.9908,20.5833 47.4912,22.6825 50.6667,26.046L 50.6667,17.4167L 55.4166,22.1667L 55.4167,34.8333L 42.75,34.8333L 38,30.0833L 46.8512,30.0833C 44.6768,27.6539 41.517,26.125 38,26.125C 31.9785,26.125 27.0037,30.6068 26.2296,36.4167L 20.6543,36.4167C 21.4543,27.5397 28.9148,20.5833 38,20.5833 Z M 38,49.875C 44.0215,49.875 48.9963,45.3932 49.7703,39.5833L 55.3457,39.5833C 54.5457,48.4603 47.0852,55.4167 38,55.4167C 33.0092,55.4167 28.5088,53.3175 25.3333,49.954L 25.3333,58.5833L 20.5833,53.8333L 20.5833,41.1667L 33.25,41.1667L 38,45.9167L 29.1487,45.9167C 31.3231,48.3461 34.483,49.875 38,49.875 Z "/>
+            </StackPanel>
         </Button>
         <GridSplitter Grid.Row="0"
                       Grid.Column="1"
                       Grid.RowSpan="2"
                       HorizontalAlignment="Stretch" Margin="5"/>
 
-        <DataGrid Grid.Row="1" DataContext="{Binding Source={StaticResource TestList}}"
-                              ItemsSource="{Binding Mode=Default, XPath=/MockObjects/MockObject}"
-                  AutoGenerateColumns="False" Margin="0,0,0,0">
+        <DataGrid Name="streamGrid" Grid.Row="1" Loaded="populateStreams"
+                  AutoGenerateColumns="False" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Data Stream" Binding="{Binding XPath=@Name}" Width="*" />
+                <DataGridTextColumn Header="Data Stream" Width="*" Binding="{Binding Name}"/>
 
                 <DataGridTemplateColumn  Header="Phone"  Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>
@@ -55,7 +57,7 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding XPath=@Phone}"/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="True"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -80,7 +82,8 @@
             <Grid Margin="20,5,5,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -90,34 +93,37 @@
 
                 <!--<TextBox Grid.Row="0" Grid.Column="0" Margin="5"></TextBox>
                 <Button Grid.Row="0" Grid.Column ="0" Margin="5" Content="Button" HorizontalAlignment="Left" Width="Auto"/>-->
-                <TextBox Grid.Column="0"  Margin="15,5,5,5" Width="200"/>
-                <Button Grid.Column="1" Margin="5" Content="Browse" HorizontalAlignment="Left" Width="Auto"/>
+                <Label Content="Project Path:" Foreground="White" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                <TextBox Name="ProjectPath" Grid.Column="1"  Margin="0,5,8,5"/>
+                <Button Grid.Column="2" Margin="5" Content="Browse" HorizontalAlignment="Left" Width="Auto" Click="SelectProjectPath"/>
 
-
-                <TextBox Grid.Column="0" Grid.Row="1"  Margin="15,5,5,5" Width="200"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                    <TextBox x:Name="txtNum" x:FieldModifier="private" Margin="5,5,0,5" Width="50" Text="0" />
-                    <Button x:Name="cmdUp" x:FieldModifier="private" Margin="5,5,0,5" Content="+" Width="20" />
-                    <Button x:Name="cmdDown" x:FieldModifier="private" Margin="0,5,0,5"  Content="-" Width="20" />
-                    <!--<ScrollBar HorizontalAlignment="Left" Width="5" Margin="5,0,0,0" />-->
+                <Label Content="Trial Name:" Foreground="White" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                <TextBox Grid.Column="1" Grid.Row="1"  Margin="0,5,8,5"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                    <TextBox x:Name="trialNum" x:FieldModifier="private" Margin="5,5,0,5" Width="50" Text="0" />
+                    <StackPanel Orientation="Vertical" Height="25">
+                    <Button x:Name="cmdUp" x:FieldModifier="private" Height="13" Content="^" VerticalAlignment="Top" FontSize="13" Padding="0" Click="incrementTrial" />
+                        <Button x:Name="cmdDown" x:FieldModifier="private" Height="15" Content ="˅" VerticalAlignment="Top" FontSize="10" Padding="0" Margin="-1" Click="decrementTrial"/>
+                    </StackPanel>
+                <!--<ScrollBar HorizontalAlignment="Left" Width="5" Margin="5,0,0,0" />-->
                 </StackPanel>
-                <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" FontSize="50" HorizontalAlignment="Right" Margin="0,0,30,0" Foreground="White">00:00</Label>
 
             </Grid>
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Padding="5" Text="Current Trial Text" Width="450" Height="100" Background="DimGray"/>
 
             <Border Padding="15,5,0,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                <GroupBox Header="Beep Control" Grid.Column="0" HorizontalAlignment="Left" Height="Auto" Width="Auto">
-                    <Grid Margin="5">
+                    <GroupBox Header="Beep Control" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" Margin="10,0,15,10
+                              ">
+                        <Grid Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -125,17 +131,17 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <CheckBox Grid.Row="0" Content="Auto Play Beep" Foreground="White"></CheckBox>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                                <Label Foreground="White" Content="Duration"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                <Label Foreground="White" Content="Duration" VerticalAlignment="Center"/>
                                 <TextBox  Margin="5,5,0,5" Width="50" Text="0" />
-                            <Button Margin="5,5,0,5" Content="+" Width="20" />
-                            <Button  Margin="0,5,0,5"  Content="-" Width="20" />
+                                <Button Margin="5,5,0,5" Content="+" Width="20" />
+                                <Button  Margin="0,5,0,5"  Content="-" Width="20" />
 
-                        </StackPanel>
-                            <Button Grid.Row="2" Height="Auto" Content="Play Beep" Margin="5"/>
-                            
+                            </StackPanel>
+                            <Button Grid.Row="2" Height="Auto" Content="Play Beep"  Width="175" Margin="5" Click="playBeep" />
+
                         </Grid>
-                </GroupBox>
+                    </GroupBox>
                     <Button Grid.Row="1" Grid.Column="0" Height="Auto" Content="Trigger Event" Margin="17,5,5,5" Width="175" HorizontalAlignment="Left"/>
                     <plus:SpacedStackPanel Grid.Column="1" Grid.Row="0">
                         <Label Content="Current Trial Length:" Foreground="White"/>
