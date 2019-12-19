@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="liblsl64.dll" />
+    <None Include="Resources\LabRecorderCLI.exe" />
     <None Include="Resources\coin.wav" />
     <None Include="Resources\beep2.wav" />
     <None Include="Resources\beep.wav" />

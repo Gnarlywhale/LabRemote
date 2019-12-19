@@ -145,9 +145,9 @@
                     <Button Grid.Row="1" Grid.Column="0" Height="Auto" Content="Trigger Event" Margin="17,5,5,5" Width="175" HorizontalAlignment="Left"/>
                     <plus:SpacedStackPanel Grid.Column="1" Grid.Row="0">
                         <Label Content="Current Trial Length:" Foreground="White"/>
-                        <Label Content="00:00:00" FontSize="65"  HorizontalContentAlignment="Left" Foreground="White"/>
+                        <Label Name="trialTime"  Content="00:00:00" FontSize="65"  HorizontalContentAlignment="Left" Foreground="White"/>
                     </plus:SpacedStackPanel>
-                    <Button Grid.Row="1" Grid.Column="1" Height="Auto" Content="Record Trial" Margin="5" Width="175" HorizontalAlignment="Center"/>
+                    <Button Name="RecordBtn" Click="RecordBtn_Click"  Grid.Row="1" Grid.Column="1" Height="Auto" Content="Start Trial" Margin="5" Width="175" HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
         </plus:SpacedStackPanel>

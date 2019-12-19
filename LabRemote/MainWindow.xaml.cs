@@ -15,12 +15,32 @@ using System.Windows.Shapes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using LSL;
 using System.Media;
+using System.Windows.Threading;
+using System.Diagnostics;
+using System.Threading;
+
+class recorder { 
+    public static void startRecording()
+    {
+    //const string ex1 = "C:\\";
+    //const string ex2 = "C:\\Dir";
+    //https://stackoverflow.com/questions/9679375/run-an-exe-from-c-sharp-code
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.CreateNoWindow = true;
+        startInfo.UseShellExecute = true;
+        startInfo.FileName = "LabRecorderCLI.exe";
+        startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        startInfo.Arguments = " testsituation.xdf \"name='Keyboard'\"";
+        Process exeProcess = Process.Start(startInfo);
+
+    }
+}
 
 class LSLStream
 {
     public string Name { get; set; }
     public Boolean Controllable { get; set; }
-
+    
     public liblsl.StreamInfo InfoHandle { get; set; }
     public LSLStream(string name, Boolean controllable , liblsl.StreamInfo infohandle)
     {
@@ -39,13 +59,30 @@ namespace LabRemote
     {
 
         private static List<LSLStream> LSLstreams;
+        private static System.IO.StreamWriter recorderStream;
         private static SoundPlayer player;
+        private static DispatcherTimer trialTimer;
+        private static Boolean isRunning;
+        private static DateTime trialStart;
+        private static Thread recorderThread;
         public MainWindow()
         {
+
             InitializeComponent();
             loadStreams(this, null);
+            isRunning = false;
             player = new SoundPlayer();
             player.Stream = Properties.Resources.coin;
+            trialTimer = new DispatcherTimer();
+            trialTimer.Interval = TimeSpan.FromMilliseconds(1);
+            trialTimer.Tick += new EventHandler(trialTimerTick);
+        }
+
+        private void trialTimerTick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now.Subtract(trialStart);
+            trialTime.Content = elapsed.ToString(@"mm\:ss\:ff");
+            CommandManager.InvalidateRequerySuggested();
         }
         private void loadStreams(object sender, RoutedEventArgs e)
         {
@@ -103,5 +140,42 @@ namespace LabRemote
             player.Stream.Position = 0;
             player.Play();
         }
+
+        private void RecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isRunning)
+            {
+                trialTimer.Start();
+                trialStart = DateTime.Now;
+                RecordBtn.Content = "Stop Trial";
+                isRunning = true;
+                //recorderThread = new Thread(recorder.startRecording);
+                //recorderThread.Start();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = true;
+                startInfo.UseShellExecute = false;
+                startInfo.RedirectStandardInput = true;
+                startInfo.FileName = "LabRecorderCLI.exe";
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.Arguments = " testsituation.xdf \"name='Keyboard'\"";
+                Process recorderProcess = Process.Start(startInfo);
+                recorderStream = recorderProcess.StandardInput;
+
+            } else
+            {
+                //recorderThread.Abort();
+                //Process[] proc =  Process.GetProcessesByName("LabRecorderCLI");
+                //proc[0].Kill();
+
+                recorderStream.WriteLine("\n");
+                recorderStream.Flush();
+                RecordBtn.Content = "Start Trial";
+                trialTimer.Stop();
+                isRunning = false;
+
+            }
+        }
+
+        
     }
 }

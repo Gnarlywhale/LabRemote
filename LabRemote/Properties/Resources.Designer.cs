@@ -68,5 +68,15 @@ namespace LabRemote.Properties {
                 return ResourceManager.GetStream("coin", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LabRecorderCLI {
+            get {
+                object obj = ResourceManager.GetObject("LabRecorderCLI", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
