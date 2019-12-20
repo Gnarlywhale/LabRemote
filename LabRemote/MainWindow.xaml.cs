@@ -69,6 +69,7 @@ namespace LabRemote
             trialTimer = new DispatcherTimer();
             trialTimer.Interval = TimeSpan.FromMilliseconds(1);
             trialTimer.Tick += new EventHandler(trialTimerTick);
+            refreshStreams(null, null);
         }
 
         private void trialTimerTick(object sender, EventArgs e)
@@ -146,13 +147,25 @@ namespace LabRemote
             if (!isRunning)
             {
 
-                RecordBtn.Content = "Stop Trial";
+                
                 isRunning = true;
-                string fullTrial = "\""+System.IO.Path.Combine(ProjectPath.Text, TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text +".xdf")+"\"";
+                string fullTrial = "";
+                if (ProjectPath.Text.Length > 0)
+                {
+                    fullTrial = "\"" + System.IO.Path.Combine(ProjectPath.Text, TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text + ".xdf") + "\"";
+                }
+                else
+                {
+                    fullTrial = TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text + ".xdf";
+
+                }
+                
                 string streamList = " ";
+                
                 foreach(LSLStream lStream in streamGrid.Items)
                 {
-                    if (lStream.Record) streamList += "\'name=\"" + lStream.Name + "\"\' ";
+                    if (lStream.Record) streamList += "\'name=" + lStream.Name + "\' ";
+                    //if (lStream.Record) streamList += "\'\"" + lStream.Name + "\"\' ";
                 }
                 
                 ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -160,9 +173,10 @@ namespace LabRemote
                 startInfo.UseShellExecute = false;
                 startInfo.RedirectStandardInput = true;
                 startInfo.RedirectStandardOutput = true;
-                startInfo.FileName = "LabRecorderCLI.exe";
+                startInfo.FileName = System.IO.Path.Combine(Directory.GetCurrentDirectory(),"LabRecorderCLI.exe");
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.Arguments = " "+ fullTrial + streamList;
+
                 recorderProcess = Process.Start(startInfo);
                 string status = recorderProcess.StandardOutput.ReadLine();
                 while(!status.Contains("Enter to quit"))
@@ -174,7 +188,7 @@ namespace LabRemote
                 incrementTrial(null, null);
                 trialTimer.Start();
                 trialStart = DateTime.Now;
-
+                RecordBtn.Content = "Stop Trial";
             } else
             {
                 recorderProcess.StandardInput.Write("\n");
