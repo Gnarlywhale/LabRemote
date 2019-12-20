@@ -48,7 +48,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Data Stream" Width="*" Binding="{Binding Name}"/>
 
-                <DataGridTemplateColumn  Header="Phone"  Width="*">
+                <DataGridTemplateColumn  Header="Record"  Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
 
@@ -56,21 +56,21 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" IsChecked="True"/>
+                        <DataTemplate >
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Record, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Header="Phone"  Width="*">
+                <DataGridTemplateColumn  Header="Control"  Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
-                            <CheckBox Content="Control" HorizontalAlignment="Center"/>
+                            <CheckBox Content="Control" HorizontalAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center"/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Controllable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -94,13 +94,13 @@
                 <!--<TextBox Grid.Row="0" Grid.Column="0" Margin="5"></TextBox>
                 <Button Grid.Row="0" Grid.Column ="0" Margin="5" Content="Button" HorizontalAlignment="Left" Width="Auto"/>-->
                 <Label Content="Project Path:" Foreground="White" Grid.Column="0" Grid.Row="0" Margin="5"/>
-                <TextBox Name="ProjectPath" Grid.Column="1"  Margin="0,5,8,5"/>
+                <TextBox Name="ProjectPath" Grid.Column="1"  Margin="0,5,8,5" />
                 <Button Grid.Column="2" Margin="5" Content="Browse" HorizontalAlignment="Left" Width="Auto" Click="SelectProjectPath"/>
 
                 <Label Content="Trial Name:" Foreground="White" Grid.Column="0" Grid.Row="1" Margin="5"/>
-                <TextBox Grid.Column="1" Grid.Row="1"  Margin="0,5,8,5"/>
+                <TextBox x:Name="TrialName" Grid.Column="1" Grid.Row="1"  Margin="0,5,8,5"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
-                    <TextBox x:Name="trialNum" x:FieldModifier="private" Margin="5,5,0,5" Width="50" Text="0" />
+                    <TextBox x:Name="trialNum" x:FieldModifier="private" Margin="5,5,0,5" Width="50" Text="1"/>
                     <StackPanel Orientation="Vertical" Height="25">
                     <Button x:Name="cmdUp" x:FieldModifier="private" Height="13" Content="^" VerticalAlignment="Top" FontSize="13" Padding="0" Click="incrementTrial" />
                         <Button x:Name="cmdDown" x:FieldModifier="private" Height="15" Content ="˅" VerticalAlignment="Top" FontSize="10" Padding="0" Margin="-1" Click="decrementTrial"/>
@@ -130,19 +130,19 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <CheckBox Grid.Row="0" Content="Auto Play Beep" Foreground="White"></CheckBox>
+                            <CheckBox Name="BeepBox"  Grid.Row="0" Content="Auto Play Beep" Foreground="White"></CheckBox>
                             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                                <Label Foreground="White" Content="Duration" VerticalAlignment="Center"/>
-                                <TextBox  Margin="5,5,0,5" Width="50" Text="0" />
-                                <Button Margin="5,5,0,5" Content="+" Width="20" />
-                                <Button  Margin="0,5,0,5"  Content="-" Width="20" />
+                                <Label Foreground="White" Content="Delay (ms)" VerticalAlignment="Center"/>
+                                <TextBox Name="BeepDelay" Margin="5,5,0,5" Width="50" Text="0" />
+                                <!--<Button Margin="5,5,0,5" Content="+" Width="20" />
+                                <Button  Margin="0,5,0,5"  Content="-" Width="20" />-->
 
                             </StackPanel>
                             <Button Grid.Row="2" Height="Auto" Content="Play Beep"  Width="175" Margin="5" Click="playBeep" />
 
                         </Grid>
                     </GroupBox>
-                    <Button Grid.Row="1" Grid.Column="0" Height="Auto" Content="Trigger Event" Margin="17,5,5,5" Width="175" HorizontalAlignment="Left"/>
+                    <Button x:Name="TriggerBtn" Grid.Row="1" Grid.Column="0" Height="Auto" Content="Trigger Event" Margin="17,5,5,5" Width="175" HorizontalAlignment="Left" Click="TriggerBtn_Click"/>
                     <plus:SpacedStackPanel Grid.Column="1" Grid.Row="0">
                         <Label Content="Current Trial Length:" Foreground="White"/>
                         <Label Name="trialTime"  Content="00:00:00" FontSize="65"  HorizontalContentAlignment="Left" Foreground="White"/>
