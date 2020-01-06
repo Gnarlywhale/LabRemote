@@ -164,7 +164,7 @@ namespace LabRemote
                 
                 foreach(LSLStream lStream in streamGrid.Items)
                 {
-                    if (lStream.Record) streamList += "\'name=" + lStream.Name + "\' ";
+                    if (lStream.Record) streamList += "\'name=" + lStream.Name + "and source_id=LabRemote\' ";
                     //if (lStream.Record) streamList += "\'\"" + lStream.Name + "\"\' ";
                 }
                 
@@ -176,10 +176,9 @@ namespace LabRemote
                 startInfo.FileName = System.IO.Path.Combine(Directory.GetCurrentDirectory(),"LabRecorderCLI.exe");
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.Arguments = " "+ fullTrial + streamList;
-
                 recorderProcess = Process.Start(startInfo);
                 string status = recorderProcess.StandardOutput.ReadLine();
-                while(!status.Contains("Enter to quit"))
+                while (!status.Contains("Enter to quit"))
                 {
                     System.Threading.Thread.Sleep(5);
                     status = recorderProcess.StandardOutput.ReadLine();
@@ -191,8 +190,8 @@ namespace LabRemote
                 RecordBtn.Content = "Stop Trial";
             } else
             {
-                recorderProcess.StandardInput.Write("\n");
-                recorderProcess.StandardInput.Flush();
+                //recorderProcess.StandardInput.Write("\n");
+                //recorderProcess.StandardInput.Flush();
                 RecordBtn.Content = "Start Trial";
                 trialTimer.Stop();
                 isRunning = false;
