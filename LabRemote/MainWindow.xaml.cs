@@ -164,10 +164,8 @@ namespace LabRemote
                 
                 foreach(LSLStream lStream in streamGrid.Items)
                 {
-                    if (lStream.Record) streamList += "\'name=" + lStream.Name + "and source_id=LabRemote\' ";
-                    //if (lStream.Record) streamList += "\'\"" + lStream.Name + "\"\' ";
+                    if (lStream.Record) streamList += "\"name=\"\""+lStream.Name+"\"\"\" ";
                 }
-                
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.CreateNoWindow = true;
                 startInfo.UseShellExecute = false;
@@ -175,7 +173,8 @@ namespace LabRemote
                 startInfo.RedirectStandardOutput = true;
                 startInfo.FileName = System.IO.Path.Combine(Directory.GetCurrentDirectory(),"LabRecorderCLI.exe");
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.Arguments = " "+ fullTrial + streamList;
+                startInfo.Arguments = fullTrial + " " + streamList;
+
                 recorderProcess = Process.Start(startInfo);
                 string status = recorderProcess.StandardOutput.ReadLine();
                 while (!status.Contains("Enter to quit"))
