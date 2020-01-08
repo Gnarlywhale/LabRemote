@@ -77,7 +77,7 @@ namespace LabRemote
             TimeSpan elapsed = DateTime.Now.Subtract(trialStart);
             trialTime.Content = elapsed.ToString(@"mm\:ss\:ff");
             CommandManager.InvalidateRequerySuggested();
-            if ((Boolean)BeepBox.IsChecked && !beeped && elapsed.Milliseconds >= Int32.Parse(BeepDelay.Text))
+            if ((Boolean)BeepBox.IsChecked && !beeped && elapsed.TotalSeconds >= Double.Parse(BeepDelay.Text))
             {
                 playBeep(null, null);
                 

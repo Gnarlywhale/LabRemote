@@ -132,7 +132,7 @@
                             </Grid.RowDefinitions>
                             <CheckBox Name="BeepBox"  Grid.Row="0" Content="Auto Play Beep" Foreground="White"></CheckBox>
                             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                                <Label Foreground="White" Content="Delay (ms)" VerticalAlignment="Center"/>
+                                <Label Foreground="White" Content="Delay (sec)" VerticalAlignment="Center"/>
                                 <TextBox Name="BeepDelay" Margin="5,5,0,5" Width="50" Text="0" />
                                 <!--<Button Margin="5,5,0,5" Content="+" Width="20" />
                                 <Button  Margin="0,5,0,5"  Content="-" Width="20" />-->
