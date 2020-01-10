@@ -8,18 +8,7 @@
         Style="{DynamicResource FlatWindowStyle}"
         mc:Ignorable="d"
         Title="Lab Remote" Height="450" Width="800">
-    <Window.Resources>
-        <XmlDataProvider x:Key="TestList" XPath="/MockObjects/*">
-            <x:XData>
-                <MockObjects xmlns="">
-                    <MockObject Name="LabRemote" LastName="Thomas" State="Canada" Phone="True" />
-                    <MockObject Name="PupilLabs" LastName="Mustermann" State="Germany" Phone="False" />
-                    <MockObject Name="OptiTrack" LastName="Johanson" State="Nowhere" Phone="True" />
 
-                </MockObjects>
-            </x:XData>
-        </XmlDataProvider>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="55" />

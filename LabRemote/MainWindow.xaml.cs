@@ -88,6 +88,7 @@ namespace LabRemote
         {
             liblsl.StreamInfo[] streams = liblsl.resolve_streams();
             LSLstreams = new List<LSLStream>();
+            LSLstreams.Clear();
             for (int i = 0; i < streams.Length; i++)
             {
                 String name = streams[i].name();
