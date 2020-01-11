@@ -19,7 +19,7 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
-
+using NatNetML;
 class LSLStream
 {
     public string Name { get; set; }
@@ -42,6 +42,11 @@ namespace LabRemote
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Nat Net Initialization
+        private static NatNetML.NatNetClientML mNatNet;    // The client instance
+        private static string mStrLocalIP = "127.0.0.1";   // Local IP address (string)
+        private static string mStrServerIP = "127.0.0.1";  // Server IP address (string)
+        private static NatNetML.ConnectionType mConnectionType = ConnectionType.Multicast;  // multicast or unicast mode
 
         private static List<LSLStream> LSLstreams;
         private static Process recorderProcess;
@@ -70,6 +75,22 @@ namespace LabRemote
             trialTimer.Interval = TimeSpan.FromMilliseconds(1);
             trialTimer.Tick += new EventHandler(trialTimerTick);
             refreshStreams(null, null);
+
+            // Move to method that gets called when the "OptiTrack" control checkbox is checked
+            mNatNet = new NatNetML.NatNetClientML();
+            int[] verNatNet = new int[4];
+            verNatNet = mNatNet.NatNetVersion();
+            Console.WriteLine("NatNet SDK Version: {0}.{1}.{2}.{3}", verNatNet[0], verNatNet[1], verNatNet[2], verNatNet[3]);
+
+            /*  [NatNet] Connecting to the Server    */
+            Console.WriteLine("\nConnecting...\n\tLocal IP address: {0}\n\tServer IP Address: {1}\n\n", mStrLocalIP, mStrServerIP);
+
+            NatNetClientML.ConnectParams connectParams = new NatNetClientML.ConnectParams();
+            connectParams.ConnectionType = mConnectionType;
+            connectParams.ServerAddress = mStrServerIP;
+            connectParams.LocalAddress = mStrLocalIP;
+            mNatNet.Connect(connectParams);
+            int a = 2;
         }
 
         private void trialTimerTick(object sender, EventArgs e)
@@ -147,20 +168,27 @@ namespace LabRemote
         {
             if (!isRunning)
             {
-
-                
+                //mNatNet.SendMessageAndWait("SetRecordTakeName")
                 isRunning = true;
-                string fullTrial = "";
+                string trialName = TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text;
+                string fullTrial;
                 if (ProjectPath.Text.Length > 0)
                 {
-                    fullTrial = "\"" + System.IO.Path.Combine(ProjectPath.Text, TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text + ".xdf") + "\"";
+                    fullTrial = "\"" + System.IO.Path.Combine(ProjectPath.Text, trialName + ".xdf") + "\"";
                 }
                 else
                 {
-                    fullTrial = TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text + ".xdf";
+                    fullTrial = trialName + ".xdf";
 
                 }
+
+
+                // Start "Control" of streams
+                int resp = 0;
+                mNatNet.SendMessageAndWait("SetRecordTakeName," + trialName, out resp);
+                mNatNet.SendMessageAndWait("StartRecording", out resp);
                 
+
                 string streamList = " ";
                 
                 foreach(LSLStream lStream in streamGrid.Items)
@@ -190,8 +218,12 @@ namespace LabRemote
                 RecordBtn.Content = "Stop Trial";
             } else
             {
-                //recorderProcess.StandardInput.Write("\n");
-                //recorderProcess.StandardInput.Flush();
+                recorderProcess.StandardInput.Write("\n");
+                recorderProcess.StandardInput.Flush();
+                // Handle stream "Control"
+                int resp;
+                mNatNet.SendMessageAndWait("StopRecording", out resp);
+
                 RecordBtn.Content = "Start Trial";
                 trialTimer.Stop();
                 isRunning = false;

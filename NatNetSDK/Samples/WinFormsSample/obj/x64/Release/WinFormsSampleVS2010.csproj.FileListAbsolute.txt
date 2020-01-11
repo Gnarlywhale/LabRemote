@@ -1,0 +1,9 @@
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\bin\x64\WinFormTestApp.exe.config
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\bin\x64\WinFormTestApp.exe
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\bin\x64\WinFormTestApp.pdb
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormsSampleVS2010.csprojAssemblyReference.cache
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormTestApp.Form1.resources
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormTestApp.Properties.Resources.resources
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormsSampleVS2010.csproj.GenerateResource.cache
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormTestApp.exe
+C:\Users\MoCap\Desktop\LabRemote\NatNetSDK\Samples\WinFormsSample\obj\x64\Release\WinFormTestApp.pdb

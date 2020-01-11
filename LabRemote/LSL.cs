@@ -901,7 +901,7 @@ public class liblsl
     class dll
     {
         /// Name of the binary to include -- replace this if you are on a non-Windows platform (e.g., liblsl64.so)
-        const string libname = "liblsl64.dll";
+        const string libname = "liblsl32.dll";
 
         [DllImport(libname, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
         public static extern int lsl_protocol_version();

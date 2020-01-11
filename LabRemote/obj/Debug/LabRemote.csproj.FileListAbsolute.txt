@@ -64,3 +64,5 @@ C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.GenerateRe
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.csproj.CopyComplete
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.exe
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Debug\LabRemote.pdb
+C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\Debug\NatNetML.dll
+C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\Debug\NatNetML.xml
