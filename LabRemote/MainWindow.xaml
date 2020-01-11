@@ -41,7 +41,7 @@
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
 
-                            <CheckBox Content="Record" />
+                            <CheckBox Content="Record" Checked="RecordCol_Checked" Unchecked="RecordCol_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
@@ -54,12 +54,12 @@
                 <DataGridTemplateColumn  Header="Control"  Width="*">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
-                            <CheckBox Content="Control" HorizontalAlignment="Center" />
+                            <CheckBox Content="Control" HorizontalAlignment="Center" Checked="ControlCol_Checked" Unchecked="ControlCol_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Controllable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Control, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Controllable}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 

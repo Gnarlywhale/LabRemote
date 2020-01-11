@@ -25,6 +25,8 @@ class LSLStream
 {
     public string Name { get; set; }
     public Boolean Controllable { get; set; }
+
+    public Boolean Control { get; set; }
     public Boolean Record { get; set; }
     public liblsl.StreamInfo InfoHandle { get; set; }
     public LSLStream(string name, Boolean controllable , liblsl.StreamInfo infohandle)
@@ -33,6 +35,7 @@ class LSLStream
         this.Controllable = controllable;
         this.InfoHandle = infohandle;
         this.Record = true;
+        this.Control = controllable;
 
     }
 }
@@ -186,7 +189,7 @@ namespace LabRemote
                 {
                     if (lStream.Record) streamList += "\"name=\"\"" + lStream.Name + "\"\"\" ";
 
-                    if (lStream.Controllable)
+                    if (lStream.Control && lStream.Controllable)
                     {
                         if (lStream.Name.Equals("OptiTrackFrameID")) {
                             // Start "Control" of streams
@@ -275,6 +278,47 @@ namespace LabRemote
                     mNatNet.Connect(connectParams);
                 }
             }
-        } 
+        }
+
+        private void RecordCol_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (LSLStream lStream in streamGrid.Items)
+            {
+                lStream.Record = true;
+                
+            }
+            streamGrid.Items.Refresh();
+        }
+
+        private void RecordCol_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (LSLStream lStream in streamGrid.Items)
+            {
+                lStream.Record = false;
+
+            }
+            streamGrid.Items.Refresh();
+        }
+        private void ControlCol_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (LSLStream lStream in streamGrid.Items)
+            {
+                if (lStream.Controllable) lStream.Control = true;
+                
+
+            }
+            streamGrid.Items.Refresh();
+        }
+
+        private void ControlCol_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (LSLStream lStream in streamGrid.Items)
+            {
+                if (lStream.Controllable) lStream.Control = false;
+                
+
+            }
+            streamGrid.Items.Refresh();
+        }
     }
 }
