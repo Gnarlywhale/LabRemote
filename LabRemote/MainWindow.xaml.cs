@@ -253,6 +253,28 @@ namespace LabRemote
             labRecorderOutlet.push_sample(triggerSample);
         }
 
+        private void Connect_NatNet()
+        {
+            // Move to method that gets called when the "OptiTrack" control checkbox is checked
+            mNatNet = new NatNetML.NatNetClientML();
+            int[] verNatNet = new int[4];
+            verNatNet = mNatNet.NatNetVersion();
+            Console.WriteLine("NatNet SDK Version: {0}.{1}.{2}.{3}", verNatNet[0], verNatNet[1], verNatNet[2], verNatNet[3]);
+
+            /*  [NatNet] Connecting to the Server    */
+            Console.WriteLine("\nConnecting...\n\tLocal IP address: {0}\n\tServer IP Address: {1}\n\n", mStrLocalIP, mStrServerIP);
+
+            NatNetClientML.ConnectParams connectParams = new NatNetClientML.ConnectParams();
+            connectParams.ConnectionType = mConnectionType;
+            connectParams.ServerAddress = mStrServerIP;
+            connectParams.LocalAddress = mStrLocalIP;
+            mNatNet.Connect(connectParams);
+        }
+
+        private void Disconnect_NatNet()
+        {
+            mNatNet.Disconnect();
+        }
         private void ControlBox_Checked(object sender, RoutedEventArgs e)
         {
             
@@ -262,24 +284,22 @@ namespace LabRemote
             {
                 if (curStream.Name.Equals("OptiTrackFrameID"))
                 {
-                    // Move to method that gets called when the "OptiTrack" control checkbox is checked
-                    mNatNet = new NatNetML.NatNetClientML();
-                    int[] verNatNet = new int[4];
-                    verNatNet = mNatNet.NatNetVersion();
-                    Console.WriteLine("NatNet SDK Version: {0}.{1}.{2}.{3}", verNatNet[0], verNatNet[1], verNatNet[2], verNatNet[3]);
-
-                    /*  [NatNet] Connecting to the Server    */
-                    Console.WriteLine("\nConnecting...\n\tLocal IP address: {0}\n\tServer IP Address: {1}\n\n", mStrLocalIP, mStrServerIP);
-
-                    NatNetClientML.ConnectParams connectParams = new NatNetClientML.ConnectParams();
-                    connectParams.ConnectionType = mConnectionType;
-                    connectParams.ServerAddress = mStrServerIP;
-                    connectParams.LocalAddress = mStrLocalIP;
-                    mNatNet.Connect(connectParams);
+                    Connect_NatNet();
                 }
             }
         }
-
+        private void ControlBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.CheckBox ckbox = sender as System.Windows.Controls.CheckBox;
+            LSLStream curStream = ckbox.DataContext as LSLStream;
+            if (curStream.Controllable)
+            {
+                if (curStream.Name.Equals("OptiTrackFrameID"))
+                {
+                    Disconnect_NatNet();
+                }
+            }
+        }
         private void RecordCol_Checked(object sender, RoutedEventArgs e)
         {
             foreach (LSLStream lStream in streamGrid.Items)

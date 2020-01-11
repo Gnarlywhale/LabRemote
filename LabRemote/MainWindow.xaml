@@ -46,7 +46,7 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate >
-                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Record, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="ControlBox_Checked"/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Record, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -59,7 +59,7 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Control, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Controllable}"/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Control, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Controllable}" Checked="ControlBox_Checked" Unchecked="ControlBox_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
