@@ -144,7 +144,7 @@ namespace LabRemote
                 i = 0;
             }
             i += 1;
-            trialNum.Text = i.ToString();
+            trialNum.Text = i.ToString("D3");
         }
         private void decrementTrial(object sender, RoutedEventArgs e)
         {
@@ -154,7 +154,7 @@ namespace LabRemote
                 i = 0;
             }
             i -= 1;
-            trialNum.Text = i.ToString();
+            trialNum.Text = i.ToString("D3");
         }
         private void playBeep(object sender, RoutedEventArgs e)
         {
