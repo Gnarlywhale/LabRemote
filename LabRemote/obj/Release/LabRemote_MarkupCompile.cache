@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Debug\
+C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\Release\
 LabRemote
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\App.xaml
 11151548125
 1232212031
