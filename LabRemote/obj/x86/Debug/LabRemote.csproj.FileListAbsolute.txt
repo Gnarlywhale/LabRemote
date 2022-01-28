@@ -8,7 +8,6 @@ C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\x86\Debug\WpfPlus.dll
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\x86\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\x86\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\bin\x86\Debug\NatNetML.xml
-C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\x86\Debug\LabRemote.csprojAssemblyReference.cache
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\x86\Debug\MainWindow.g.cs
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\x86\Debug\App.g.cs
 C:\Users\MoCap\Desktop\LabRemote\LabRemote\obj\x86\Debug\LabRemote_Content.g.cs
