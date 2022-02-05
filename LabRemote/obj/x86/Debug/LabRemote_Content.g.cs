@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("liblsl32.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("liblsl64.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("lsl.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("natnetlib.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("natnetml.dll")]
 
 

@@ -91,14 +91,17 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
                     <TextBox x:Name="trialNum" x:FieldModifier="private" Margin="5,5,0,5" Width="50" Text="001" IsEnabled="False"/>
                     <StackPanel Orientation="Vertical" Height="25">
-                    <Button x:Name="cmdUp" x:FieldModifier="private" Height="13" Content="^" VerticalAlignment="Top" FontSize="13" Padding="0" Click="incrementTrial" />
+                        <Button x:Name="cmdUp" x:FieldModifier="private" Height="13" Content="^" VerticalAlignment="Top" FontSize="13" Padding="0" Click="incrementTrial" />
                         <Button x:Name="cmdDown" x:FieldModifier="private" Height="15" Content ="˅" VerticalAlignment="Top" FontSize="10" Padding="0" Margin="-1" Click="decrementTrial"/>
                     </StackPanel>
-                <!--<ScrollBar HorizontalAlignment="Left" Width="5" Margin="5,0,0,0" />-->
+                    <!--<ScrollBar HorizontalAlignment="Left" Width="5" Margin="5,0,0,0" />-->
                 </StackPanel>
 
             </Grid>
-            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Padding="5" Text="Current Trial Text" Width="450" Height="100" Background="DimGray"/>
+
+            <TextBox IsReadOnly="True" Cursor="Arrow" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="TrialStatus" HorizontalAlignment="Center" TextWrapping="Wrap" Padding="5"  Width="475" Height="119" Background="DimGray" Margin="23,3">
+
+            </TextBox>
 
             <Border Padding="15,5,0,0">
                 <Grid>

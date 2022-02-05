@@ -21,6 +21,7 @@ using System.Threading;
 using System.IO;
 using NatNetML;
 
+
 class LSLStream
 {
     public string Name { get; set; }
@@ -54,6 +55,7 @@ namespace LabRemote
 
         private static List<LSLStream> LSLstreams;
         private static Process recorderProcess;
+        private static Process statusProcess;
         private static SoundPlayer player;
         private static DispatcherTimer trialTimer;
         private static Boolean isRunning;
@@ -63,6 +65,7 @@ namespace LabRemote
         private static int[] beepSample = new int[1];
         private static int[] triggerSample = new int[1];
         private static List<string> controlStrings = new List<string>();
+        private string fullTrial;
 
         public MainWindow()
         {
@@ -164,7 +167,7 @@ namespace LabRemote
 
         }
 
-        private void RecordBtn_Click(object sender, RoutedEventArgs e)
+        private async void RecordBtn_Click(object sender, RoutedEventArgs e)
         {
             int resp = 0;
             if (!isRunning)
@@ -172,7 +175,7 @@ namespace LabRemote
 
                 isRunning = true;
                 string trialName = TrialName.Text.Replace(".xdf", "") + "_" + trialNum.Text;
-                string fullTrial;
+
                 if (ProjectPath.Text.Length > 0)
                 {
                     fullTrial = "\"" + System.IO.Path.Combine(ProjectPath.Text, trialName + ".xdf") + "\"";
@@ -216,7 +219,7 @@ namespace LabRemote
                 string status = recorderProcess.StandardOutput.ReadLine();
                 while (!status.Contains("Enter to quit"))
                 {
-                    System.Threading.Thread.Sleep(5);
+                    Thread.Sleep(5);
                     status = recorderProcess.StandardOutput.ReadLine();
 
                 }
@@ -245,9 +248,47 @@ namespace LabRemote
                 trialTimer.Stop();
                 isRunning = false;
                 beeped = false;
+                TrialStatus.Text = "Loading Trial Status";
+                Task<String> statusTask = gettrialstatus(fullTrial);
+                TrialStatus.Text = await statusTask;
             }
         }
+        private static async Task<string> gettrialstatus(string fullTrial)
+        {
+            string status = "Unable to load previous trial.";
+            Debug.WriteLine("Attempting to read file:");
+            Debug.WriteLine(fullTrial);
+            
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.CreateNoWindow = true;
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardInput = true;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.FileName = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "GaMATrialStatus.exe");
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.Arguments = fullTrial + " " + fullTrial;
+            statusProcess = Process.Start(startInfo);
+            string tempStat = statusProcess.StandardOutput.ReadLine();
+            string trialStatus = "";
+            int counter = 0;
+            while (tempStat != null && !tempStat.Contains("Capture Summary") && counter <= 100)
+            {
+                counter += 1;
+                await Task.Delay(50);
+                tempStat = statusProcess.StandardOutput.ReadLine();
 
+            }
+            if (counter > 99 || tempStat == null) return status; 
+            trialStatus += tempStat;
+            while (tempStat != null){
+                tempStat = statusProcess.StandardOutput.ReadLine();
+                if (tempStat != null && !tempStat.Contains("End")) {
+                    trialStatus += "\n" + tempStat;
+                }
+                
+            }
+            return trialStatus;
+        }
         private void TriggerBtn_Click(object sender, RoutedEventArgs e)
         {
             labRecorderOutlet.push_sample(triggerSample);
