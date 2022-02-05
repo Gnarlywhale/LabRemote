@@ -50,3 +50,7 @@ D:\LabRemote\LabRemote\obj\x86\Debug\LabRemote.exe
 D:\LabRemote\LabRemote\obj\x86\Debug\LabRemote.pdb
 D:\LabRemote\LabRemote\bin\x86\Debug\liblsl64.dll
 D:\LabRemote\LabRemote\obj\x86\Debug\LabRemote.csproj.AssemblyReference.cache
+D:\LabRemote\LabRemote\bin\x86\Debug\GaMATrialStatus.exe
+D:\LabRemote\LabRemote\bin\x86\Debug\GaMATrialStatus.py
+D:\LabRemote\LabRemote\bin\x86\Debug\GaMATrialStatus.spec
+D:\LabRemote\LabRemote\bin\x86\Debug\test.xdf

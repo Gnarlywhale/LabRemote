@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("gamatrialstatus.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("gamatrialstatus.py")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("liblsl32.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("liblsl64.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("lsl.dll")]
